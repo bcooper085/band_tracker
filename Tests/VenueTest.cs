@@ -23,6 +23,7 @@ namespace BandTracker
             Assert.Equal(0, result);
         }
 
+        [Fact]
         public void Test_Equal_ReturnsTrueForSameName()
         {
             //Arrange, Act
@@ -65,7 +66,19 @@ namespace BandTracker
             Assert.Equal(testList, result);
         }
 
+        [Fact]
+        public void Test_Find_FindsVenueInDatabase()
+        {
+            //Arrange
+            Venue testVenue = new Venue("Red Rocks");
+            testVenue.Save();
 
+            //Act
+            Venue foundVenue = Venue.Find(testVenue.GetId());
+
+            //Assert
+            Assert.Equal(testVenue, foundVenue);
+        }
 
         public void Dispose()
         {
