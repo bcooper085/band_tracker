@@ -109,11 +109,11 @@ namespace BandTracker
           //Act
           testVenue.AddBand(testBand);
 
-          List<Band> result = testVenue.GetBands();
-          List<Band> testList = new List<Band>{testBand};
+          List<Band> testBandsList = new List<Band>{testBand};
+          List<Band> resultBandsList = testVenue.GetBands();
 
           //Assert
-          Assert.Equal(testList, result);
+          Assert.Equal(testBandsList, resultBandsList);
         }
 
         [Fact]
