@@ -1,5 +1,5 @@
 $(function(){
-  $("#add-category").click(function(){
+  $("#add-venue").click(function(){
     $(".add-form").slideToggle();
   });
 });
