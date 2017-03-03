@@ -188,6 +188,25 @@ namespace BandTracker
             return allBands;
         }
 
+        public static void UpdateName(int id, string NewName)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @NewName OUTPUT INSERTED.name WHERE id = @VenueId;", conn);
+
+            cmd.Parameters.Add(new SqlParameter("@NewName", NewName));
+            cmd.Parameters.Add(new SqlParameter("@VenueId", id));
+
+            cmd.ExecuteNonQuery();
+
+            if(conn != null)
+            {
+              conn.Close();
+            }
+        }
+
+
         public static void DeleteAll()
         {
             SqlConnection conn = DB.Connection();

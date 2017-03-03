@@ -137,7 +137,19 @@ namespace BandTracker
             Assert.Equal(testBandsList, resultBandsList);
         }
 
+        [Fact]
+        public void Test_UpdateName_VenueNameUpdate()
+        {
+            //Arrange
+            Venue testVenue = new Venue("Fly Fish");
+            testVenue.Save();
 
+            //Act
+            Venue.UpdateName(testVenue.GetId(), "Angry Fish");
+
+            //Assert
+            Assert.Equal("Angry Fish", Venue.Find(testVenue.GetId()).GetName());
+        }
 
         public void Dispose()
         {
