@@ -17,7 +17,7 @@ namespace BandTracker
         public void Test_DatabaseEmptyAtFirst()
         {
             //Arrange, Act
-            int result = Band.GetBand().Count;
+            int result = Band.GetBands().Count;
 
             //Assert
             Assert.Equal(0, result);
@@ -42,11 +42,43 @@ namespace BandTracker
 
             //Act
             testBand.Save();
-            List<Band> result = Band.GetBand();
+            List<Band> result = Band.GetBands();
             List<Band> testList = new List<Band>{testBand};
 
             //Assert
             Assert.Equal(testList, result);
+        }
+
+        [Fact]
+        public void Test_Save_AssignsIdToObject()
+        {
+            //Arrange
+            Band testBand = new Band("Angry Fish");
+
+            //Act
+            testBand.Save();
+            Band savedBand = Band.GetBands()[0];
+
+
+            int result = savedBand.GetId();
+            int testId = testBand.GetId();
+
+            //Assert
+            Assert.Equal(testId, result);
+        }
+
+        [Fact]
+        public void Test_Find_FindBandInDatabase()
+        {
+            //Arrange
+            Band testBand = new Band("Angry Fish");
+            testBand.Save();
+
+            //Act
+            Band foundBand = Band.Find(testBand.GetId());
+
+            //Assert
+            Assert.Equal(testBand, foundBand);
         }
 
         public void Dispose()

@@ -38,7 +38,7 @@ namespace BandTracker
             return _name;
         }
 
-        public static List<Band> GetBand()
+        public static List<Band> GetBands()
         {
             List<Band> allBands = new List<Band>{};
 
@@ -68,27 +68,58 @@ namespace BandTracker
 
         public void Save()
         {
-        SqlConnection conn = DB.Connection();
-        conn.Open();
+            SqlConnection conn = DB.Connection();
+            conn.Open();
 
-        SqlCommand cmd = new SqlCommand("INSERT INTO bands (name) OUTPUT INSERTED.id VALUES (@BandName);", conn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO bands (name) OUTPUT INSERTED.id VALUES (@BandName);", conn);
 
-        cmd.Parameters.Add(new SqlParameter("@BandName", this.GetName()));
-        
-        SqlDataReader rdr = cmd.ExecuteReader();
+            cmd.Parameters.Add(new SqlParameter("@BandName", this.GetName()));
 
-        while(rdr.Read())
-        {
-          this._id = rdr.GetInt32(0);
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._id = rdr.GetInt32(0);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if(conn != null)
+            {
+                conn.Close();
+            }
         }
-        if (rdr != null)
+
+        public static Band Find(int id)
         {
-          rdr.Close();
-        }
-        if(conn != null)
-        {
-          conn.Close();
-        }
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM bands WHERE id = @BandId;", conn);
+
+            cmd.Parameters.Add(new SqlParameter("@BandId", id.ToString()));
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            int foundBandId = 0;
+            string foundBandName = null;
+
+            while(rdr.Read())
+            {
+                foundBandId = rdr.GetInt32(0);
+                foundBandName = rdr.GetString(1);
+            }
+            Band foundBand = new Band(foundBandName, foundBandId);
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return foundBand;
         }
 
         public static void DeleteAll()
