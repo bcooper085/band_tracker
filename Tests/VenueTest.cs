@@ -17,7 +17,7 @@ namespace BandTracker
         public void Test_CategoriesEmptyAtFirst()
         {
             //Arrange, Act
-            int result = Venue.GetAll().Count;
+            int result = Venue.GetVenues().Count;
 
             //Assert
             Assert.Equal(0, result);
@@ -42,7 +42,7 @@ namespace BandTracker
             testVenue.Save();
 
             //Act
-            Venue savedVenue = Venue.GetAll()[0];
+            Venue savedVenue = Venue.GetVenues()[0];
 
             int result = savedVenue.GetId();
             int testId = testVenue.GetId();
@@ -59,7 +59,7 @@ namespace BandTracker
             testVenue.Save();
 
             //Act
-            List<Venue> result = Venue.GetAll();
+            List<Venue> result = Venue.GetVenues();
             List<Venue> testList = new List<Venue>{testVenue};
 
             //Assert
@@ -78,6 +78,22 @@ namespace BandTracker
 
             //Assert
             Assert.Equal(testVenue, foundVenue);
+        }
+
+        [Fact]
+        public void Test_Delete_DeletesVenueFromDatabase()
+        {
+            //Arrange
+            Venue testVenue = new Venue("Red Rocks");
+            testVenue.Save();
+
+            //Act
+            testVenue.Delete();
+            List<Venue> result = Venue.GetVenues();
+            List<Venue> testVenues = new List<Venue>{};
+
+            //Assert
+            Assert.Equal(testVenues, result);
         }
 
         public void Dispose()

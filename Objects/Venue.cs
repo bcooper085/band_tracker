@@ -29,7 +29,6 @@ namespace BandTracker
                 return (idEquality && nameEquality);
             }
         }
-
         public int GetId()
         {
             return _id;
@@ -38,7 +37,7 @@ namespace BandTracker
         {
             return _name;
         }
-        public static List<Venue> GetAll()
+        public static List<Venue> GetVenues()
         {
             List<Venue> allVenues = new List<Venue>{};
 
@@ -122,6 +121,23 @@ namespace BandTracker
                 conn.Close();
             }
             return foundVenue;
+        }
+
+        public void Delete()
+        {
+          SqlConnection conn = DB.Connection();
+          conn.Open();
+
+          SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId; DELETE FROM bands_venues WHERE venue_id = @VenueId;", conn);
+
+          cmd.Parameters.Add(new SqlParameter("@VenueId", this.GetId()));
+
+          cmd.ExecuteNonQuery();
+
+          if (conn != null)
+          {
+            conn.Close();
+          }
         }
 
 
