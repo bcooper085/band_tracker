@@ -81,6 +81,22 @@ namespace BandTracker
             Assert.Equal(testBand, foundBand);
         }
 
+        [Fact]
+        public void Test_Delete_DeletesBandFromDatabase()
+        {
+            //Arrange
+            Band testBand = new Band("Angry Fish");
+            testBand.Save();
+
+            //Act
+            testBand.Delete();
+            List<Band> result = Band.GetBands();
+            List<Band> testBands = new List<Band>{};
+
+            //Assert
+            Assert.Equal(testBands, result);
+        }
+
         public void Dispose()
         {
             Venue.DeleteAll();
