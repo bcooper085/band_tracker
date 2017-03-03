@@ -18,6 +18,9 @@
 - User can add Venue to a Band
 - User can view all Venues that have hosted a specific Band
 
+# Icebox
+- User can add Genre to a Band
+
 Database Creation:
 
 -In SQLCMD
@@ -28,6 +31,8 @@ Database Creation:
 - CREATE TABLE venues (id INT IDENTITY(1,1), name VARCHAR(255));
 - GO
 - CREATE TABLE bands ( id INT IDENTITY(1,1), name VARCHAR(255));
+- GO
+- CREATE TABLE bands_venues (id INT IDENTITY(1,1), band_id INT, venue_id INT);
 - GO
 
 # Known Bugs

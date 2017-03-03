@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace RecipeBox
+namespace BandTracker
 {
     public class DB
     {
