@@ -34,6 +34,23 @@ namespace BandTracker
         }
 
         [Fact]
+        public void Test_Save_AssignsIdToVenue()
+        {
+            //Arrange
+            Venue testVenue = new Venue("Red Rocks");
+            testVenue.Save();
+
+            //Act
+            Venue savedVenue = Venue.GetAll()[0];
+
+            int result = savedVenue.GetId();
+            int testId = testVenue.GetId();
+
+            //Assert
+            Assert.Equal(testId, result);
+        }
+
+        [Fact]
         public void Test_Save_SavesVenueToDatabase()
         {
             //Arrange
