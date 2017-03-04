@@ -9,3 +9,10 @@
     <h5>Band Name: @band.GetName()</h5>
   </li>
 }
+<h3>New Band</h3>
+<form action="/venue/@Model["venues"].GetId()/band/new" method="post">
+    <input type="text" name="band-name" placeholder="Band Name">
+    <button type="submit" class="waves-effect waves-light btn" name="button">Add Band</button>
+</form>
+
+<a href="/" class="waves-effect waves-light btn">Home</a>
