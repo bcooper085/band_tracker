@@ -41,5 +41,5 @@ No known bugs.
 ## Legal
 Licensed under the MIT License.
 
-<a href="https://github.com/bcooper085/Hair_Salon_Cweek3">Github</a>
+<a href="https://github.com/bcooper085/band_tracker">Github</a>
 Copyright (c) 2017 Copyright Brandon Cooper, All Rights Reserved.
