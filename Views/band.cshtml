@@ -1,3 +1,18 @@
 @{
   Layout = "Shared/_Layout.cshtml";
 }
+<h3>@Model["bands"].GetName() List</h3>
+
+@foreach(var venue in Model["venues"])
+{
+  <li>
+    <h5>Venue Name: @venue.GetName()</h5>
+  </li>
+}
+<h3>New Band</h3>
+<form action="/band/@Model["bands"].GetId()/venue/new" method="post">
+    <input type="text" name="venue-name" placeholder="Venue Name">
+    <button type="submit" class="waves-effect waves-light btn" name="button">Add Venue</button>
+</form>
+
+<a href="/" class="waves-effect waves-light btn">Home</a>
