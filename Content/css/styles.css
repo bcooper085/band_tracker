@@ -4,26 +4,23 @@
 
 .header {
   text-align: center;
-  background-color: #bc2022;
+  background-color: #6ef442;
   color: white;
   width: 100vw;
   position: relative;
   top: 0px;
   margin-top: -35px;
+  padding-bottom: 50px;
   padding-top: 5%;
-  padding-left: 5%;
   border-bottom: 2px solid #5b6c87;
 }
 
 h3 {
-  color: #bc2022;
+  color: #6ef442;
 }
 
 li h3 a {
-    color: #bc2022;
-}
-.btn:visited {
-  background-color: black!important;
+    color: #6ef442;
 }
 
 .btn {
@@ -31,11 +28,9 @@ li h3 a {
   background-color: #5b6c87;
 }
 
-.btn:hover {
+.btn:hover, .btn:active {
   background-color: black;
 }
-
-
 
 li {
   list-style: none;

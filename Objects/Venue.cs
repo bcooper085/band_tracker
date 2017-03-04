@@ -54,7 +54,6 @@ namespace BandTracker
                 Venue newVenue = new Venue(VenueName, VenueId);
                 allVenues.Add(newVenue);
             }
-
             if (rdr != null)
             {
                 rdr.Close();
@@ -125,19 +124,19 @@ namespace BandTracker
 
         public void Delete()
         {
-          SqlConnection conn = DB.Connection();
-          conn.Open();
+            SqlConnection conn = DB.Connection();
+            conn.Open();
 
-          SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId; DELETE FROM bands_venues WHERE venue_id = @VenueId;", conn);
+            SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId; DELETE FROM bands_venues WHERE venue_id = @VenueId;", conn);
 
-          cmd.Parameters.Add(new SqlParameter("@VenueId", this.GetId()));
+            cmd.Parameters.Add(new SqlParameter("@VenueId", this.GetId()));
 
-          cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
 
-          if (conn != null)
-          {
-            conn.Close();
-          }
+            if (conn != null)
+            {
+                conn.Close();
+            }
         }
 
         public void AddBand(Band newBand)
@@ -202,10 +201,9 @@ namespace BandTracker
 
             if(conn != null)
             {
-              conn.Close();
+                conn.Close();
             }
         }
-
 
         public static void DeleteAll()
         {
@@ -215,6 +213,5 @@ namespace BandTracker
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-
     }
 }
