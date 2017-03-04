@@ -1,10 +1,11 @@
-# _Barks_
-#### A Mobile Dog Groomer
+# _Venue Guide_
+#### Add bands and venues with ability to link.
 
 ## By Brandon Cooper
 
 # Description
-##### A mock site to schedule your pets grooming with your favorite groomer.  We come to you.
+## Bug Fixes and styling on Branch _Adjust_ <a href="https://github.com/bcooper085/band_tracker/tree/adjust">Here</a>
+##### A mock site to View Bands playing at a specific venue or all venues where a band has played.
 
 # Specs
 
