@@ -14,23 +14,8 @@
     }
 <button type="button" id="add-venue" class="waves-effect waves-light btn" name="button">Add</button>
 <div class="add-form">
-  <form action="/" method="post">
+  <form action="/add-venue" method="post">
     <input type="text" name="venue-name" placeholder="Venue">
-    <button type="submit" class="waves-effect waves-light btn" name="button">Submit</button>
-  </form>
-</div>
-
-<h3>Bands</h3>
-    @foreach (var band in Model["bands"])
-    {
-        <li>
-          <h3><a href="band/@band.GetId()">@band.GetName()</a></h3>
-        </li>
-    }
-<button type="button" id="add-band" class="waves-effect waves-light btn" name="button">Add</button>
-<div class="add-form">
-  <form action="/" method="post">
-    <input type="text" name="band-name" placeholder="Band">
     <button type="submit" class="waves-effect waves-light btn" name="button">Submit</button>
   </form>
 </div>

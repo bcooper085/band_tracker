@@ -1,0 +1,11 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+<h3>@Model["venues"].GetName() List</h3>
+
+@foreach(var band in Model["bands"])
+{
+  <li>
+    <h5>Band Name: @band.GetName()</h5>
+  </li>
+}
