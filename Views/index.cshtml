@@ -8,10 +8,16 @@
         {
             <li>
                 <h3><a href="venue/@venue.GetId()">@venue.GetName()</a></h3>
-                <form action="/venue/delete/@venue.GetId()" method="post">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="waves-effect waves-light btn" name="button">Delete</button>
+                <form action="/venue/edit/@venue.GetId()" method="post">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <input type="text" name="venue-name" value="@venue.GetName()" required>
+                    <button type="submit" class="waves-effect waves-light btn" name="button">Edit</button>
                 </form>
+                <form action="/venue/delete/@venue.GetId()" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="waves-effect waves-light btn" name="button">Delete</button>
+                </form>
+
             </li>
         }
         <button type="button" id="add-venue" class="waves-effect waves-light btn" name="button">Add</button>
