@@ -37,6 +37,14 @@ namespace BandTracker
                 model.Add("bands", BandList);
                 return View["venues.cshtml", model];
             };
+            Get["/band/{id}"] = parameters => {
+                Dictionary<string, object> model = new Dictionary<string, object>();
+                Band SelectedBand = Band.Find(parameters.id);
+                List<Venue> BandVenue = SelectedBand.GetVenues();
+                model.Add("bands", SelectedBand);
+                model.Add("venues", BandVenue);
+                return View["bands.cshtml", model];
+            };
             Post["/venue/{id}/band/new"] = parameters => {
                 Band newBand = new Band(Request.Form["band-name"]);
                 newBand.Save();
@@ -49,6 +57,18 @@ namespace BandTracker
                 return View["venues.cshtml", model];
             };
 
+            Post["/band/{id}/venue/new"] = parameters => {
+                Venue newVenue = new Venue(Request.Form["venue-name"]);
+                newVenue.Save();
+                Band SelectedBand = Band.Find(parameters.id);
+                SelectedBand.AddVenue(newVenue);
+                Dictionary<string, object> model = new Dictionary<string, object>();
+                List<Venue> VenueList = SelectedBand.GetVenues();
+                model.Add("bands", SelectedBand);
+                model.Add("venues", VenueList);
+                return View["bands.cshtml", model];
+            };
+
             Post["/add-band"] = _ => {
                 Band newBand = new Band(Request.Form["band-name"]);
                 newBand.Save();
@@ -58,15 +78,6 @@ namespace BandTracker
                 model.Add("venues", AllVenues);
                 model.Add("bands", AllBands);
                 return View["success.cshtml", model];
-            };
-
-            Get["/band/{id}"] = parameters => {
-                Dictionary<string, object> model = new Dictionary<string, object>();
-                Band SelectedBand = Band.Find(parameters.id);
-                List<Venue> BandVenue = SelectedBand.GetVenues();
-                model.Add("bands", SelectedBand);
-                model.Add("venues", BandVenue);
-                return View["band.cshtml"];
             };
 
             Get["/venue/delete/{id}"] = parameters => {
