@@ -3,7 +3,6 @@
 }
 
 .header {
-  text-align: center;
   background-color: #6ef442;
   color: white;
   width: 100vw;
@@ -12,7 +11,12 @@
   margin-top: -35px;
   padding-bottom: 50px;
   padding-top: 5%;
+  padding-left: 5%;
   border-bottom: 2px solid #5b6c87;
+}
+
+.bands {
+    margin-left: 30%;
 }
 
 h3 {

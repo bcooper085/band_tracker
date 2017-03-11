@@ -1,48 +1,53 @@
 @{
   Layout = "Shared/_Layout.cshtml";
 }
-<div class="row">
-    <div class="venues-home col s5">
-        <h3>Venues</h3>
-        @foreach (var venue in Model["venues"])
-        {
-            <li>
-                <h3><a href="venue/@venue.GetId()">@venue.GetName()</a></h3>
-                <form action="/venue/edit/@venue.GetId()" method="post">
-                    <input type="hidden" name="_method" value="PATCH">
-                    <input type="text" name="venue-name" value="@venue.GetName()" required>
-                    <button type="submit" class="waves-effect waves-light btn" name="button">Edit</button>
-                </form>
-                <form action="/venue/delete/@venue.GetId()" method="post">
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="waves-effect waves-light btn" name="button">Delete</button>
-                </form>
+<div class="container">
+    <div class="row">
+        <div class="venues col l5">
+            <div class="venues-home">
+                <h3>Venues</h3>
+                @foreach (var venue in Model["venues"])
+                {
+                    <li>
+                        <h3><a href="venue/@venue.GetId()">@venue.GetName()</a></h3>
+                        <form action="/venue/edit/@venue.GetId()" method="post">
+                            <input type="hidden" name="_method" value="PATCH">
+                            <input id="edit-line" type="text" name="venue-name" value="@venue.GetName()" required>
+                            <button type="submit" class="waves-effect waves-light btn" name="button">Edit</button>
+                        </form>
+                        <form action="/venue/delete/@venue.GetId()" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="waves-effect waves-light btn" name="button">Delete</button>
+                        </form>
 
-            </li>
-        }
-        <button type="button" id="add-venue" class="waves-effect waves-light btn" name="button">Add</button>
-        <div class="add-venue-form">
-            <form action="/add-venue" method="post">
-                <input type="text" name="venue-name" placeholder="Venue">
-                <button type="submit" class="waves-effect waves-light btn" name="button">Submit</button>
-            </form>
+                    </li>
+                }
+                <button type="button" id="add-venue" class="waves-effect waves-light btn" name="button">Add</button>
+                <div class="add-venue-form">
+                    <form action="/add-venue" method="post">
+                        <input type="text" name="venue-name" placeholder="Venue">
+                        <button type="submit" class="waves-effect waves-light btn" name="button">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="bands-home col s5">
-        <h3>Bands</h3>
-        @foreach (var band in Model["bands"])
-        {
-            <li>
-                <h3><a href="band/@band.GetId()">@band.GetName()</a></h3>
-            </li>
-        }
-        <button type="button" id="add-band" class="waves-effect waves-light btn" name="button">Add</button>
-        <div class="add-band-form">
-            <form action="/add-band" method="post">
-                <input type="text" name="band-name" placeholder="Band">
-                <button type="submit" class="waves-effect waves-light btn" name="button">Submit</button>
-            </form>
+        <div class="col l5">
+            <div class="bands">
+                <h3>Bands</h3>
+                @foreach (var band in Model["bands"])
+                {
+                    <li>
+                        <h3><a href="band/@band.GetId()">@band.GetName()</a></h3>
+                    </li>
+                }
+                <button type="button" id="add-band" class="waves-effect waves-light btn" name="button">Add</button>
+                <div class="add-band-form">
+                    <form action="/add-band" method="post">
+                        <input type="text" name="band-name" placeholder="Band">
+                        <button type="submit" class="waves-effect waves-light btn" name="button">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
